@@ -1,5 +1,6 @@
 const express = require('express');
 const Movie = require('../models/Movie.model');
+const Celebrity = require('../models/Celebrity.model');
 const router  = express.Router();
 
 router.get('/movies', async (req, res) => {
@@ -15,7 +16,7 @@ router.get('/movies/new', async (req, res) => {
 //show movie info
 router.get('/movies/:movieId', async (req, res) => {
   const movieId = req.params.movieId;
-  const movie = await Movie.findById(movieId);
+  const movie = await Movie.findById(movieId).populate('cast')
   res.render('movies/show', { movie });
 });
 
@@ -30,7 +31,8 @@ router.post('/movies/new', async (req, res) => {
 router.get('/movies/:movieId/edit', async (req, res) => {
   const movieId = req.params.movieId;
   const movie = await Movie.findById(movieId);
-  res.render('movies/edit', { movie });
+      const allCelebs = await Celebrity.find();
+  res.render('movies/edit', { movie, allCelebs });
 });
 
 //Delete Movie
@@ -43,8 +45,8 @@ router.post('/movies/:movieId/delete', async (req, res) => {
 //Edit Movie
 router.post('/movies/:movieId/edit', async (req, res) => {
     const movieId = req.params.movieId;
-  const { genre, plot } = req.body;
-  await Movie.findByIdAndUpdate(movieId, { genre, plot });
+  const { title, genre, plot, cast } = req.body;
+  await Movie.findByIdAndUpdate(movieId, { title, genre, plot, cast });
   res.redirect('/movies');
 });
 module.exports = router;

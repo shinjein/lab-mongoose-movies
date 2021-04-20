@@ -12,18 +12,22 @@ const movies = [
     title: 'Titanic',
     genre: 'Drama',
     plot: 'Star cross lovers on a big boat',
+    cast: 'Leonardo DiCaprio'
   },
   {
     title: 'Parasite',
     genre: 'Thriller',
     plot: 'Who is the real parasite?',
+    cast: 'Cho Yeo-Jeong'
   },
   {
     title: 'Oldboy',
     genre: 'Thriller',
     plot: 'A man tries to get revenge on his captor',
+    cast: 'Oh Dae Su'
   }
 ];
+
 // const celebrities = [
 //   {
 //     name: 'Shakira',

@@ -8,7 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const helpers      = require('handlebars-helpers');
 
+hbs.registerHelper(helpers());
 
 mongoose
   .connect('mongodb://localhost/lab-celebrity-express', {useNewUrlParser: true})
