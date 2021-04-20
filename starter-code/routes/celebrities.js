@@ -1,6 +1,7 @@
 
 const express = require('express');
 const Celebrity = require('../models/Celebrity.model');
+const Movie = require('../models/Movie.model');
 const router = express.Router();
 
 router.get('/celebrities', async (req, res) => {
