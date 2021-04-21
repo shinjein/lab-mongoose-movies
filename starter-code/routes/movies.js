@@ -16,7 +16,7 @@ router.get('/movies/new', async (req, res) => {
 //show movie info
 router.get('/movies/:movieId', async (req, res) => {
   const movieId = req.params.movieId;
-  const movie = await Movie.findById(movieId).populate('cast')
+  const movie = await Movie.findById(movieId).populate('cast');
   res.render('movies/show', { movie });
 });
 
@@ -46,7 +46,8 @@ router.post('/movies/:movieId/delete', async (req, res) => {
 router.post('/movies/:movieId/edit', async (req, res) => {
     const movieId = req.params.movieId;
   const { title, genre, plot, cast } = req.body;
-  await Movie.findByIdAndUpdate(movieId, { title, genre, plot, cast });
+  console.log(req.body)
+  await Movie.findByIdAndUpdate(movieId, req.body);
   res.redirect('/movies');
 });
 module.exports = router;

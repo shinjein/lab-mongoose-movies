@@ -1,24 +1,26 @@
 <h2>Edit {{movie.title}}</h2>
 
 <form action="/movies/{{movie.id}}/edit" method="POST">
+    <label>Title</label>
+        <input type="text" name="title" value="{{movie.title}}" />
     <label>Genre</label>
-    <input type="text" name="genre" value="{{movie.genre}}" />
+        <input type="text" name="genre" value="{{movie.genre}}" />
     <label>Plot</label>
-    <input type="text" name="plot" value="{{movie.plot}}" />
-        <br>
+        <input type="text" name="plot" value="{{movie.plot}}" />
+            <br>
     <label>Add Celebrity</label>
-    <select name="celebrity">
-        <option value="">select famous person</option>
-        {{#each allCelebs}}
-        {{!-- name is the name of the author --}}
-        {{!-- book.author.name is the name of the book author --}}
-        {{#eq name ../movie.cast.name}}
-        <option value={{id}} selected> {{name}} </option>
-        {{else}}
-        <option value={{id}}> {{name}} </option>
-        {{/eq}}
-        {{/each}}
-    </select>
+        <select name="cast">
+            <option value="">select famous person</option>
+            {{#each allCelebs}}
+            {{!-- name is the name of the author --}}
+            {{!-- book.author.name is the name of the book author --}}
+            {{#eq name ../movie.cast.name}}
+            <option value={{id}} selected> {{name}} </option>
+            {{else}}
+            <option value={{id}}> {{name}} </option>
+            {{/eq}}
+            {{/each}}
+        </select>
     <button type="submit"> Make Changes</button>
 </form>
 
